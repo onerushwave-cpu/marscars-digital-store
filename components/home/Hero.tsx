@@ -67,6 +67,11 @@ export default function Hero() {
             aria-hidden
           >
             <source src="/hero.mp4" type="video/mp4" />
+            {/* Fallback for deployments that ship without the local video file */}
+            <source
+              src="https://raw.githubusercontent.com/onerushwave-cpu/marscars-digital-store/4b31b7ce765424a56f09e3825ac6b0335741c822/public/hero.mp4"
+              type="video/mp4"
+            />
           </video>
         </div>
         {/* Light leaks + lens flare */}
