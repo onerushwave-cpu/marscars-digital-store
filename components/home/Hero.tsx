@@ -58,12 +58,13 @@ export default function Hero() {
       <motion.div className="absolute inset-0" style={{ y: bgY }} aria-hidden>
         <div className="hero-zoom absolute inset-0">
           <video
-            className="absolute inset-0 h-full w-full object-cover opacity-40"
+            className="absolute inset-0 h-full w-full object-cover opacity-55"
             autoPlay
             muted
             loop
             playsInline
-            poster=""
+            preload="metadata"
+            aria-hidden
           >
             <source src="/hero.mp4" type="video/mp4" />
           </video>
