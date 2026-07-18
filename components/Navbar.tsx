@@ -39,9 +39,14 @@ export default function Navbar() {
     >
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/" className="group flex items-center gap-2" aria-label="Marscars home">
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-ember to-amber text-lg font-black text-night shadow-lg shadow-ember/40 transition-transform group-hover:scale-110">
-            M
-          </span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/logo.svg"
+            alt=""
+            width={40}
+            height={40}
+            className="h-10 w-10 transition-transform group-hover:scale-110"
+          />
           <span className="font-display text-lg font-bold tracking-tight">
             MARS<span className="text-ember-gradient">CARS</span>
           </span>

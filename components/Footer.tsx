@@ -38,13 +38,16 @@ export default function Footer() {
         <div className="grid gap-12 lg:grid-cols-[1.4fr_2fr]">
           <div>
             <Link href="/" className="flex items-center gap-2">
-              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-ember to-amber text-lg font-black text-night">
-                M
-              </span>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/logo.svg" alt="" width={44} height={44} className="h-11 w-11" />
               <span className="font-display text-lg font-bold tracking-tight">
                 MARS<span className="text-ember-gradient">CARS</span>
               </span>
             </Link>
+            <p className="mt-3 text-xs font-bold uppercase tracking-[0.3em] text-mist/80">
+              Cars<span className="text-ember">.</span> Content
+              <span className="text-ember">.</span> Creative<span className="text-ember">.</span>
+            </p>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-mist">
               Premium digital products for car enthusiasts, automotive creators, mechanics,
               detailers and dealerships. Fuel your automotive brand.
