@@ -37,7 +37,11 @@ export default function Navbar() {
         scrolled ? "glass shadow-2xl shadow-black/40" : "bg-transparent"
       }`}
     >
-      <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <nav
+        className={`mx-auto flex max-w-7xl items-center justify-between px-4 transition-all duration-500 sm:px-6 lg:px-8 ${
+          scrolled ? "h-14" : "h-16"
+        }`}
+      >
         <Link href="/" className="group flex items-center gap-2" aria-label="Marscars home">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -45,7 +49,9 @@ export default function Navbar() {
             alt=""
             width={40}
             height={40}
-            className="h-10 w-10 transition-transform group-hover:scale-110"
+            className={`transition-all duration-500 group-hover:scale-110 ${
+              scrolled ? "h-9 w-9" : "h-10 w-10"
+            }`}
           />
           <span className="font-display text-lg font-bold tracking-tight">
             MARS<span className="text-ember-gradient">CARS</span>
@@ -57,7 +63,7 @@ export default function Navbar() {
             <Link
               key={l.href}
               href={l.href}
-              className="rounded-full px-4 py-2 text-sm font-medium text-mist transition-colors hover:bg-white/5 hover:text-white"
+              className="nav-link rounded-full px-4 py-2 text-sm font-medium text-mist transition-colors hover:text-white"
             >
               {l.label}
             </Link>
@@ -84,9 +90,15 @@ export default function Navbar() {
           >
             🛒
             {hydrated && cart.length > 0 && (
-              <span className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-ember text-[10px] font-bold text-night">
+              <motion.span
+                key={cart.length}
+                initial={{ scale: 0.4 }}
+                animate={{ scale: [0.4, 1.35, 1] }}
+                transition={{ duration: 0.45, times: [0, 0.6, 1], ease: "easeOut" }}
+                className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-ember text-[10px] font-bold text-night shadow-[0_0_12px_rgba(255,106,0,0.8)]"
+              >
                 {cart.length}
-              </span>
+              </motion.span>
             )}
           </Link>
           <Link href="/products" className="btn-primary hidden px-5 py-2 text-sm md:inline-flex">
@@ -113,18 +125,30 @@ export default function Navbar() {
             className="glass overflow-hidden md:hidden"
           >
             <div className="flex flex-col gap-1 px-4 py-4">
-              {links.map((l) => (
-                <Link
+              {links.map((l, i) => (
+                <motion.div
                   key={l.href}
-                  href={l.href}
-                  className="rounded-xl px-4 py-3 font-medium text-white transition-colors hover:bg-white/5"
+                  initial={{ opacity: 0, x: -18 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.35, delay: 0.06 * i, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  {l.label}
-                </Link>
+                  <Link
+                    href={l.href}
+                    className="block rounded-xl px-4 py-3 font-medium text-white transition-colors hover:bg-white/5"
+                  >
+                    {l.label}
+                  </Link>
+                </motion.div>
               ))}
-              <Link href="/products" className="btn-primary mt-2 px-5 py-3 text-sm">
-                Shop Now
-              </Link>
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.35, delay: 0.06 * links.length }}
+              >
+                <Link href="/products" className="btn-primary w-full px-5 py-3 text-sm">
+                  Shop Now
+                </Link>
+              </motion.div>
             </div>
           </motion.div>
         )}

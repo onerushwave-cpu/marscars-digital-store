@@ -35,18 +35,54 @@ export default function CartPage() {
   };
 
   if (paid) {
+    const confetti = Array.from({ length: 40 }, (_, i) => ({
+      left: 5 + (i * 90) / 40 + (i % 3),
+      delay: (i % 8) * 0.09,
+      drift: ((i % 7) - 3) * 30,
+      spin: 360 + (i % 5) * 120,
+      color: ["#FF6A00", "#FFAA33", "#ffffff", "#d90429"][i % 4],
+    }));
     return (
-      <div className="mx-auto max-w-2xl px-4 pb-24 pt-40 text-center sm:px-6">
+      <div className="relative mx-auto max-w-2xl px-4 pb-24 pt-40 text-center sm:px-6">
+        <div aria-hidden className="pointer-events-none absolute inset-x-0 top-24 h-[70vh] overflow-hidden">
+          {confetti.map((c, i) => (
+            <span
+              key={i}
+              className="confetti-piece"
+              style={{
+                left: `${c.left}%`,
+                background: c.color,
+                animationDelay: `${c.delay}s`,
+                ["--c-drift" as string]: `${c.drift}px`,
+                ["--c-spin" as string]: `${c.spin}deg`,
+              }}
+            />
+          ))}
+        </div>
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="glow-ring rounded-3xl border border-ember/40 bg-card p-12"
+          animate={{ scale: [0.8, 1.04, 1], opacity: 1 }}
+          transition={{ duration: 0.6, times: [0, 0.7, 1], ease: [0.22, 1, 0.36, 1] }}
+          className="glow-ring relative rounded-3xl border border-ember/40 bg-card p-12"
         >
-          <span className="text-6xl" aria-hidden>
-            🏁
-          </span>
-          <h1 className="font-display mt-6 text-3xl font-extrabold">Order Complete!</h1>
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ type: "spring", stiffness: 260, damping: 16, delay: 0.15 }}
+            className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-ember to-amber shadow-[0_0_50px_rgba(255,106,0,0.5)]"
+          >
+            <svg width="38" height="38" viewBox="0 0 38 38" fill="none" aria-hidden>
+              <path
+                d="M8 20 L16 28 L30 11"
+                stroke="#050505"
+                strokeWidth="4.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="check-path"
+              />
+            </svg>
+          </motion.div>
+          <h1 className="font-display mt-6 text-3xl font-extrabold">Order Complete! 🏁</h1>
           <p className="mt-4 text-mist">
             Your downloads are ready. In the production build, Stripe/PayPal checkout runs here and
             files are delivered instantly to your email and dashboard.

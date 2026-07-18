@@ -11,6 +11,41 @@ const stats = [
   { value: 52, suffix: "", label: "Product Drops / Year" },
 ];
 
+const headlineWords = ["Fuel", "Your", "Automotive", "Brand", "with"];
+const headlineAccent = ["Premium", "Digital", "Products"];
+
+function AnimatedWords({
+  words,
+  offset,
+  accent,
+}: {
+  words: string[];
+  offset: number;
+  accent?: boolean;
+}) {
+  return (
+    <>
+      {words.map((word, i) => (
+        <span key={word + i} className="inline-block overflow-hidden pb-1 align-bottom">
+          <motion.span
+            className={`inline-block ${accent ? "text-shimmer" : ""}`}
+            initial={{ y: "110%", opacity: 0, rotateX: -35 }}
+            animate={{ y: "0%", opacity: 1, rotateX: 0 }}
+            transition={{
+              duration: 0.75,
+              delay: 0.15 + (offset + i) * 0.09,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+          >
+            {word}
+          </motion.span>
+          {i < words.length - 1 && <span>&nbsp;</span>}
+        </span>
+      ))}
+    </>
+  );
+}
+
 export default function Hero() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
@@ -21,16 +56,42 @@ export default function Hero() {
     <section ref={ref} className="relative flex min-h-svh items-center justify-center overflow-hidden">
       {/* Cinematic background — drop /public/hero.mp4 in place to enable the video layer */}
       <motion.div className="absolute inset-0" style={{ y: bgY }} aria-hidden>
-        <video
-          className="absolute inset-0 h-full w-full object-cover opacity-40"
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster=""
-        >
-          <source src="/hero.mp4" type="video/mp4" />
-        </video>
+        <div className="hero-zoom absolute inset-0">
+          <video
+            className="absolute inset-0 h-full w-full object-cover opacity-40"
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster=""
+          >
+            <source src="/hero.mp4" type="video/mp4" />
+          </video>
+        </div>
+        {/* Light leaks + lens flare */}
+        <div
+          className="animate-pulse-glow absolute -left-[10%] top-[8%] h-[45vh] w-[38vw] rounded-full blur-3xl"
+          style={{
+            background: "radial-gradient(ellipse, rgba(255,140,60,0.14), transparent 70%)",
+            animationDuration: "7s",
+          }}
+        />
+        <div
+          className="animate-pulse-glow absolute right-[4%] top-[16%] h-[30vh] w-[26vw] rounded-full blur-3xl"
+          style={{
+            background: "radial-gradient(ellipse, rgba(255,214,140,0.12), transparent 70%)",
+            animationDuration: "9s",
+            animationDelay: "2.5s",
+          }}
+        />
+        <div
+          className="absolute right-[14%] top-[20%] h-24 w-24 rounded-full opacity-40"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(255,255,255,0.35), rgba(255,170,51,0.18) 35%, transparent 70%)",
+            boxShadow: "0 0 80px 30px rgba(255,170,51,0.12)",
+          }}
+        />
         <div className="absolute inset-0 bg-gradient-to-b from-night/60 via-night/40 to-night" />
         <div
           className="absolute inset-0"
@@ -83,14 +144,13 @@ export default function Hero() {
           Trusted by Automotive Creators Worldwide
         </motion.p>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="font-display mt-6 text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl"
+        <h1
+          className="font-display mt-6 text-4xl font-extrabold leading-[1.08] tracking-tight sm:text-6xl lg:text-7xl"
+          style={{ perspective: 600 }}
         >
-          Fuel Your Automotive Brand with <span className="text-gradient">Premium Digital Products</span>
-        </motion.h1>
+          <AnimatedWords words={headlineWords} offset={0} />{" "}
+          <AnimatedWords words={headlineAccent} offset={headlineWords.length} accent />
+        </h1>
 
         <motion.p
           initial={{ opacity: 0, y: 30 }}
@@ -109,13 +169,13 @@ export default function Hero() {
           className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row"
         >
           <Link href="/products" className="btn-primary w-full px-8 py-3.5 text-base sm:w-auto">
-            Shop Now →
+            Shop Now <span className="btn-icon">→</span>
           </Link>
           <Link
             href="/products/ultimate-automotive-creator-bundle"
             className="btn-secondary w-full px-8 py-3.5 text-base sm:w-auto"
           >
-            Explore Bundles
+            Explore Bundles <span className="btn-icon">→</span>
           </Link>
         </motion.div>
 

@@ -7,6 +7,9 @@ import Footer from "@/components/Footer";
 import MouseGlow from "@/components/MouseGlow";
 import Toast from "@/components/Toast";
 import PageTransition from "@/components/PageTransition";
+import CustomCursor from "@/components/fx/CustomCursor";
+import AmbientBackground from "@/components/fx/AmbientBackground";
+import IntroLoader from "@/components/fx/IntroLoader";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 const sora = Sora({ subsets: ["latin"], variable: "--font-sora", display: "swap" });
@@ -68,7 +71,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
         />
         <StoreProvider>
+          <IntroLoader />
+          <AmbientBackground />
           <MouseGlow />
+          <CustomCursor />
           <Navbar />
           <PageTransition>
             <main className="relative z-10 min-h-screen">{children}</main>

@@ -7,6 +7,7 @@ import { formatPrice } from "@/lib/data/products";
 import { useStore } from "@/lib/store";
 import ProductCover from "@/components/ProductCover";
 import Stars from "@/components/Stars";
+import TiltCard from "@/components/fx/TiltCard";
 
 export default function ProductCard({ product }: { product: Product }) {
   const { addToCart, toggleWishlist, wishlist, hydrated } = useStore();
@@ -15,7 +16,7 @@ export default function ProductCard({ product }: { product: Product }) {
   const discount = Math.round((1 - product.price / product.originalPrice) * 100);
 
   return (
-    <div className="card-hover group relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-card">
+    <TiltCard className="card-hover group relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-card">
       <Link
         href={`/products/${product.slug}`}
         className="cover-sheen relative block overflow-hidden"
@@ -95,6 +96,6 @@ export default function ProductCard({ product }: { product: Product }) {
           </button>
         </div>
       </div>
-    </div>
+    </TiltCard>
   );
 }

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Hero from "@/components/home/Hero";
+import Testimonials from "@/components/home/Testimonials";
 import ProductCard from "@/components/ProductCard";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion";
 import { categories } from "@/lib/data/categories";
@@ -212,6 +213,8 @@ export default function HomePage() {
           </Stagger>
         </div>
       </section>
+
+      <Testimonials />
 
       {/* Trust strip */}
       <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
