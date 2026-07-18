@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Marscars logo">
+  <defs>
+    <linearGradient id="chrome" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.45" stop-color="#d7d7d7"/>
+      <stop offset="0.55" stop-color="#8f8f8f"/>
+      <stop offset="0.75" stop-color="#e8e8e8"/>
+      <stop offset="1" stop-color="#9a9a9a"/>
+    </linearGradient>
+    <linearGradient id="crimson" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff4d4d"/>
+      <stop offset="0.5" stop-color="#d90429"/>
+      <stop offset="1" stop-color="#8d0801"/>
+    </linearGradient>
+    <linearGradient id="chromeArc" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#7a7a7a"/>
+      <stop offset="0.5" stop-color="#e9e9e9"/>
+      <stop offset="1" stop-color="#ffffff"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Circular swoosh: silver lower-left arc, red upper-right arc -->
+  <path d="M 158 431 A 200 200 0 0 1 92 180" fill="none" stroke="url(#chromeArc)" stroke-width="26" stroke-linecap="round"/>
+  <path d="M 175 86 A 200 200 0 0 1 445 316" fill="none" stroke="url(#crimson)" stroke-width="26" stroke-linecap="round"/>
+
+  <!-- Car silhouette above the M -->
+  <path d="M 146 184
+           C 162 172 186 164 210 160
+           C 232 136 262 124 296 126
+           C 330 128 356 140 374 154
+           C 390 158 402 164 410 172
+           L 416 182
+           C 380 172 340 168 300 168
+           C 248 168 194 174 146 184 Z" fill="url(#chrome)"/>
+  <path d="M 222 158 C 240 140 264 132 292 133 C 316 134 336 142 352 152 C 312 148 266 150 222 158 Z" fill="#0a0a0a"/>
+  <path d="M 292 133 L 296 152 L 288 152 L 284 134 Z" fill="#0a0a0a" opacity="0.6"/>
+
+  <!-- The M: silver left strokes, red right leg -->
+  <path d="M 120 418 L 120 208 L 168 190 L 168 418 Z" fill="url(#chrome)"/>
+  <path d="M 168 190 L 292 322 L 292 396 L 168 262 Z" fill="url(#chrome)"/>
+  <path d="M 292 322 L 396 210 L 396 418 L 344 418 L 344 330 L 292 396 Z" fill="url(#crimson)"/>
+  <!-- bevel shadows -->
+  <path d="M 168 190 L 292 322 L 292 350 L 168 218 Z" fill="#ffffff" opacity="0.25"/>
+  <path d="M 344 418 L 344 330 L 292 396 L 292 322 L 316 296 L 316 418 Z" fill="#000000" opacity="0.22"/>
+</svg>
