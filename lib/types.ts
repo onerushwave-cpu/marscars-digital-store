@@ -30,6 +30,10 @@ export interface Product {
   reviews: Review[];
   faqs: FAQ[];
   related: string[];
+  /** Optional cover image in /public (e.g. "/covers/my-pack.jpg"). Falls back to the emoji scene. */
+  image?: string;
+  /** When set, Buy Now / Buy on Gumroad opens this Gumroad product's real checkout overlay. */
+  gumroadUrl?: string;
 }
 
 export interface Category {

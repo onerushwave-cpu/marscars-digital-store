@@ -85,15 +85,26 @@ export default function ProductCard({ product }: { product: Product }) {
           >
             Add to Cart
           </button>
-          <button
-            onClick={() => {
-              addToCart(product.slug);
-              router.push("/cart");
-            }}
-            className="btn-primary px-3 py-2.5 text-xs"
-          >
-            Buy Now
-          </button>
+          {product.gumroadUrl ? (
+            <a
+              href={product.gumroadUrl}
+              className="gumroad-button btn-primary px-3 py-2.5 text-xs"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Buy Now
+            </a>
+          ) : (
+            <button
+              onClick={() => {
+                addToCart(product.slug);
+                router.push("/cart");
+              }}
+              className="btn-primary px-3 py-2.5 text-xs"
+            >
+              Buy Now
+            </button>
+          )}
         </div>
       </div>
     </TiltCard>

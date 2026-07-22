@@ -1,4 +1,5 @@
 import type { Product } from "@/lib/types";
+import { gumroadProducts } from "@/lib/data/gumroad";
 
 const defaultFaqs = [
   {
@@ -23,7 +24,7 @@ const defaultFaqs = [
   },
 ];
 
-export const products: Product[] = [
+const baseProducts: Product[] = [
   {
     slug: "ai-automotive-poster-prompt-bundle",
     name: "AI Automotive Poster Prompt Bundle",
@@ -730,6 +731,9 @@ export const products: Product[] = [
     related: ["ai-automotive-poster-prompt-bundle", "automotive-social-media-bundle", "dealership-marketing-kit"],
   },
 ];
+
+/** The built-in demo catalog plus any of your Gumroad products (lib/data/gumroad.ts). */
+export const products: Product[] = [...baseProducts, ...gumroadProducts];
 
 export function getProduct(slug: string): Product | undefined {
   return products.find((p) => p.slug === slug);

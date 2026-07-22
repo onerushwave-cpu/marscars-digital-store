@@ -44,9 +44,41 @@ The hero renders an animated cinematic gradient scene by default. Drop a `hero.m
 ### Product cover art
 
 Covers are generated gradient scenes (zero external requests, instant loads). To use real
-photography, drop images into `/public` and update `components/ProductCover.tsx`.
+photography, drop an image into `/public` and set `image: "/my-cover.jpg"` on the product.
+
+## 🛒 Selling your own Gumroad products
+
+You can list your real Gumroad products on the marketplace and take live payments — Gumroad
+handles checkout, instant file delivery and licensing for you. **No API keys required.**
+
+1. Open `lib/data/gumroad.ts`.
+2. Add an entry to the `myGumroadProducts` array — only `name`, `price`, `gumroadUrl` and
+   `category` are required:
+
+   ```ts
+   export const myGumroadProducts: GumroadEntry[] = [
+     {
+       name: "JDM Legends Lightroom Pack",
+       price: 12.99,
+       originalPrice: 24.99,
+       gumroadUrl: "https://yourname.gumroad.com/l/jdm-legends",
+       category: "lightroom-presets",
+       emoji: "📸",
+       tagline: "20 street-tuned presets for JDM night shoots.",
+       included: ["20 desktop presets", "20 mobile presets", "Install guide"],
+     },
+   ];
+   ```
+
+3. Redeploy. Each product now appears across the site (home, catalog, search, category
+   pages) and its **Buy** button opens your real Gumroad checkout in an on-site overlay.
+
+The `gumroadUrl` field also works on any built-in product in `lib/data/products.ts` — set it
+and that product's Buy button routes to Gumroad instead of the demo checkout.
 
 ## Production wiring (next steps)
+
+Gumroad (above) is the fastest way to take real payments today. For a fully custom checkout:
 
 The UI is complete and checkout/auth flows are demoed client-side. To go live:
 

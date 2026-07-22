@@ -23,15 +23,27 @@ export default function ProductActions({ product }: { product: Product }) {
         >
           🛒 Add to Cart
         </button>
-        <button
-          onClick={() => {
-            addToCart(product.slug);
-            router.push("/cart");
-          }}
-          className="btn-primary px-6 py-3.5 text-sm"
-        >
-          ⚡ Buy Now
-        </button>
+        {product.gumroadUrl ? (
+          <a
+            href={product.gumroadUrl}
+            className="gumroad-button btn-primary px-6 py-3.5 text-sm"
+            data-gumroad-single-product="true"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            ⚡ Buy on Gumroad
+          </a>
+        ) : (
+          <button
+            onClick={() => {
+              addToCart(product.slug);
+              router.push("/cart");
+            }}
+            className="btn-primary px-6 py-3.5 text-sm"
+          >
+            ⚡ Buy Now
+          </button>
+        )}
       </div>
       <button
         onClick={() => toggleWishlist(product.slug)}

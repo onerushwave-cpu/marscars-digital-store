@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Sora } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { StoreProvider } from "@/lib/store";
 import Navbar from "@/components/Navbar";
@@ -82,6 +83,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Footer />
           <Toast />
         </StoreProvider>
+        {/* Gumroad overlay checkout — powers .gumroad-button links so purchases
+            happen in an on-site overlay instead of leaving the page. */}
+        <Script src="https://gumroad.com/js/gumroad.js" strategy="afterInteractive" />
       </body>
     </html>
   );
